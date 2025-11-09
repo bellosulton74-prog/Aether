@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHER - Medieval Edition</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=MedievalSharp&display=swap');
+    
+    :root {
+      --bg-color: #506685;
+      --card-bg: #ffffff;
+      --text: #f0e6d2;
+      --button-bg: #e1ab55;
+      --button-hover: #fffdda;
+      --border: #d3cef7;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Cinzel', serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      text-align: center;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23f0e6d2" stroke-width="2"/><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%23f0e6d2" stroke-width="1"/></svg>');
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      position: relative;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 1px solid #e1ab55;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+     
+    .imageview img{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh; /* takes full screen height */
+      overflow: hidden;
+    }
+
+    .imageview img {
+      max-width: 90vmin; /* scales based on viewport size */
+      max-height: 90vmin;
+      height: auto;
+      width: auto;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .imageview img:hover {
+      transform: scale(1.05);
+    }  
+
+    input {
+      font-family: 'MedievalSharp', cursive;
+      font-size: 15px;
+      padding: 10px 14px;
+      margin: 10px 0 16px 0;
+      border-radius: 4px;
+      border: 1px solid #E1AB55;
+      width: 100%;
+      text-align: center;
+      outline: none;
+      background-color: #3a4a66;
+      color: #F0E6D2;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    input:focus {
+      border-color: var(--button-hover);
+      box-shadow: 0 0 5px rgba(225, 171, 85, 0.5);
+    }
+/* Change placeholder text color */
+input::placeholder {
+    color: #a0a8b8;
+    opacity: 1; /* Firefox reduces opacity by default */
+}
+
+/* For older browsers */
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #a0a8b8;
+}
+
+input::-moz-placeholder { /* Firefox 19+ */
+    color: #a0a8b8;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder { /* IE 10+ */
+    color: #a0a8b8;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: #a0a8b8;
+    opacity: 1;
+}
+    button {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 4px;
+      border: none;
+      color: #3a4a66;
+      background-color: var(--button-bg);
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.2s ease;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .tasks {
+      text-align: left;
+    }
+
+    .tasks p {
+      margin: 16px 0 6px 0;
+      line-height: 1.5;
+      font-family: 'Cinzel', serif;
+    }
+
+    .tasks input {
+      margin-bottom: 20px;
+    }
+
+    a button {
+      margin-left: 8px;
+    }
+
+    .final {
+      text-align: center;
+      padding: 30px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      color: #3a4a66;
+    }
+
+    .fade {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #E1AB55;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 14px;
+      color: #000000;
+      font-family: 'Cinzel', serif;
+    }
+    
+    h1 {
+      color: #E1AB55;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
+    }
+    
+    .home p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+    
+    .start {
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border-radius: 6px;
+    }
+    
+    /* Decorative elements */
+    .divider {
+      height: 2px;
+      background: linear-gradient(to right, transparent, #E1AB55, transparent);
+      margin: 20px 0;
+    }
+    
+    .corner-decoration {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #E1AB55;
+    }
+    
+    .corner-tl {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+    
+    .corner-tr {
+      top: 10px;
+      right: 10px;
+      border-left: none;
+      border-bottom: none;
+    }
+    
+    .corner-bl {
+      bottom: 10px;
+      left: 10px;
+      border-right: none;
+      border-top: none;
+    }
+    
+    .corner-br {
+      bottom: 10px;
+      right: 10px;
+      border-left: none;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Decorative corners -->
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-tr"></div>
+    <div class="corner-decoration corner-bl"></div>
+    <div class="corner-decoration corner-br"></div>
+    
+    <!-- Step 1: Home -->
+    <div class="home">
+      <div><h1>AETHER</h1></div>
+      <p>Redefining How NFTs are Launched</p>
+      <button class="start">join the movement</button>
+    </div>
+
+    <!-- Step 2: Username -->
+    <div class="username hidden fade">
+      <h3>enter your X username</h3>
+      <div class="divider"></div>
+      <input type="text" id="x_username" placeholder="@username">
+      <button id="save_username">next</button>
+    </div>
+
+    <!-- Step 3: Tasks -->
+    <div class="tasks hidden fade">
+      <h3>complete these tasks</h3>
+      <div class="divider"></div>
+
+      <p>follow
+        <a href="https://x.com/aethersxyz" target="_blank" rel="noopener noreferrer">
+          <button>go</button>
+        </a>
+      </p>
+
+      <p> like & repost post
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+          <button>go</button>
+        </a>
+      </p>
+      <input type="url" id="repost_link" placeholder="paste your repost link">
+
+      <p>tag 2 friends
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+          <button>go</button>
+        </a>
+      </p>
+
+      <p>comment on post
+        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+          <button>go</button>
+        </a>
+      </p>
+      <input type="url" id="comment_link" placeholder="paste your comment link">
+
+      <button id="done_tasks">done</button>
+    </div>
+
+    <!-- Step 4: Address -->
+    <div class="address hidden fade">
+      <h3>enter your wallet</h3>
+      <div class="divider"></div>
+      <input type="text" id="address" placeholder="0x...">
+      <button id="save_address">submit</button>
+    </div>
+
+    <!-- Step 5: Final -->
+    <div class="final hidden fade">
+      <h3>✅ entry recorded</h3>
+      <div class="divider"></div>
+      <p>Your quest has been recorded in the sacred scrolls.</p>
+    </div>
+
+  </div>
+
+  <!-- Firebase + Realtime Database -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCw3iYwkzeaZLY7AKdF53i1-GBIHFEisug",
+      authDomain: "aethers-18282.firebaseapp.com",
+      databaseURL: "https://aethers-18282-default-rtdb.firebaseio.com",
+      projectId: "aethers-18282",
+      storageBucket: "aethers-18282.firebasestorage.app",
+      messagingSenderId: "25703092957",
+      appId: "1:25703092957:web:b431273488fe8e4f018134"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const imageView = document.querySelector('.home');
+    const usernameDiv = document.querySelector('.username');
+    const tasksDiv = document.querySelector('.tasks');
+    const addressDiv = document.querySelector('.address');
+    const finalDiv = document.querySelector('.final');
+    const joinMovement = document.querySelector('.start')
+    let username = "";
+    let repostLink = "";
+    let commentLink = "";
+
+    // Step 1 → Step 2
+    joinMovement.addEventListener('click', () => {
+      imageView.classList.add('hidden');
+      usernameDiv.classList.remove('hidden');
+    });
+
+    // Step 2 → Step 3
+    document.getElementById('save_username').addEventListener('click', () => {
+      username = document.getElementById('x_username').value.trim();
+      if (username) {
+        usernameDiv.classList.add('hidden');
+        tasksDiv.classList.remove('hidden');
+      }
+    });
+
+    // Step 3 → Step 4
+    document.getElementById('done_tasks').addEventListener('click', () => {
+      repostLink = document.getElementById('repost_link').value.trim();
+      commentLink = document.getElementById('comment_link').value.trim();
+      if (!repostLink || !commentLink) {
+        alert("Please paste both your repost and comment links before continuing.");
+        return;
+      }
+      tasksDiv.classList.add('hidden');
+      addressDiv.classList.remove('hidden');
+    });
+
+    // Step 4 → Step 5
+    document.getElementById('save_address').addEventListener('click', async () => {
+      const address = document.getElementById('address').value.trim();
+      const evmRegex = /^0x[a-fA-F0-9]{40}$/;
+
+      if (!evmRegex.test(address)) {
+        alert("Please enter a valid EVM address (starts with 0x + 40 hex characters).");
+        return;
+      }
+
+      if (address && username && repostLink && commentLink) {
+        try {
+          const entryRef = push(ref(db, "entries"));
+          await set(entryRef, { username, repostLink, commentLink, address });
+          addressDiv.classList.add('hidden');
+          finalDiv.classList.remove('hidden');
+        } catch (e) {
+          alert("Error saving: " + e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
