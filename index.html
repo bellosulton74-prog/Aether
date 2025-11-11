@@ -8,12 +8,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=MedievalSharp&display=swap');
     
     :root {
-      --bg-color: #506685;
+      --bg-color: #f8f3e6;
       --card-bg: #ffffff;
-      --text: #f0e6d2;
+      --text: #5a4c3e;
       --button-bg: #e1ab55;
-      --button-hover: #fffdda;
-      --border: #d3cef7;
+      --button-hover: #d19c46;
+      --border: #d4b87a;
+      --accent: #8b7355;
     }
 
     body {
@@ -26,17 +27,17 @@
       margin: 0;
       color: var(--text);
       text-align: center;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23f0e6d2" stroke-width="2"/><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%23f0e6d2" stroke-width="1"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%238b7355" stroke-width="2"/><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%238b7355" stroke-width="1"/></svg>');
     }
 
     .container {
       background-color: var(--card-bg);
       border: 2px solid var(--border);
       border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 20px rgba(139, 115, 85, 0.15);
       padding: 40px 30px;
       width: 90%;
-      max-width: 380px;
+      max-width: 420px;
       text-align: center;
       position: relative;
     }
@@ -62,12 +63,12 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 100vh; /* takes full screen height */
+      height: 100vh;
       overflow: hidden;
     }
 
     .imageview img {
-      max-width: 90vmin; /* scales based on viewport size */
+      max-width: 90vmin;
       max-height: 90vmin;
       height: auto;
       width: auto;
@@ -86,70 +87,80 @@
       padding: 10px 14px;
       margin: 10px 0 16px 0;
       border-radius: 4px;
-      border: 1px solid #E1AB55;
+      border: 1px solid var(--border);
       width: 100%;
       text-align: center;
       outline: none;
-      background-color: #3a4a66;
-      color: #F0E6D2;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+      background-color: #fefcf7;
+      color: var(--text);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     input:focus {
-      border-color: var(--button-hover);
+      border-color: var(--button-bg);
       box-shadow: 0 0 5px rgba(225, 171, 85, 0.5);
     }
-/* Change placeholder text color */
-input::placeholder {
-    color: #a0a8b8;
-    opacity: 1; /* Firefox reduces opacity by default */
-}
 
-/* For older browsers */
-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #a0a8b8;
-}
+    /* Placeholder styling */
+    input::placeholder {
+      color: #a89b8a;
+      opacity: 1;
+    }
 
-input::-moz-placeholder { /* Firefox 19+ */
-    color: #a0a8b8;
-    opacity: 1;
-}
+    input::-webkit-input-placeholder {
+      color: #a89b8a;
+    }
 
-input:-ms-input-placeholder { /* IE 10+ */
-    color: #a0a8b8;
-}
+    input::-moz-placeholder {
+      color: #a89b8a;
+      opacity: 1;
+    }
 
-input:-moz-placeholder { /* Firefox 18- */
-    color: #a0a8b8;
-    opacity: 1;
-}
+    input:-ms-input-placeholder {
+      color: #a89b8a;
+    }
+
+    input:-moz-placeholder {
+      color: #a89b8a;
+      opacity: 1;
+    }
+
     button {
       font-family: 'Cinzel', serif;
       font-size: 15px;
       padding: 10px 20px;
-      margin-top: 10px;
+      margin: 8px 5px;
       border-radius: 4px;
       border: none;
-      color: #3a4a66;
+      color: #5a4c3e;
       background-color: var(--button-bg);
       cursor: pointer;
-      transition: background 0.25s ease, transform 0.2s ease;
+      transition: all 0.25s ease;
       font-weight: 600;
       letter-spacing: 0.5px;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
       position: relative;
       overflow: hidden;
     }
 
     button:hover {
       background-color: var(--button-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
 
     button:active {
       transform: translateY(1px);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-secondary {
+      background-color: #d7c9b5;
+      color: #5a4c3e;
+    }
+
+    .button-secondary:hover {
+      background-color: #c8b9a3;
     }
 
     .tasks {
@@ -176,7 +187,7 @@ input:-moz-placeholder { /* Firefox 18- */
       border-radius: 8px;
       background: #fff;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-      color: #3a4a66;
+      color: var(--text);
     }
 
     .fade {
@@ -193,23 +204,24 @@ input:-moz-placeholder { /* Firefox 18- */
       margin-bottom: 12px;
       font-family: 'Cinzel', serif;
       font-weight: 700;
-      color: #E1AB55;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      color: var(--accent);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     p {
       font-size: 14px;
-      color: #000000;
+      color: var(--text);
       font-family: 'Cinzel', serif;
+      line-height: 1.6;
     }
     
     h1 {
-      color: #E1AB55;
+      color: var(--accent);
       font-family: 'Cinzel', serif;
       font-weight: 700;
       font-size: 2.5rem;
       margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       letter-spacing: 2px;
     }
     
@@ -228,7 +240,7 @@ input:-moz-placeholder { /* Firefox 18- */
     /* Decorative elements */
     .divider {
       height: 2px;
-      background: linear-gradient(to right, transparent, #E1AB55, transparent);
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
       margin: 20px 0;
     }
     
@@ -236,7 +248,7 @@ input:-moz-placeholder { /* Firefox 18- */
       position: absolute;
       width: 20px;
       height: 20px;
-      border: 2px solid #E1AB55;
+      border: 2px solid var(--accent);
     }
     
     .corner-tl {
@@ -266,9 +278,77 @@ input:-moz-placeholder { /* Firefox 18- */
       border-left: none;
       border-top: none;
     }
+    
+    /* Loading notification */
+    .loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .loading-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 300px;
+    }
+    
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--button-bg);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .about-content {
+      text-align: left;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    
+    .about-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .about-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+    
+    .about-content::-webkit-scrollbar-thumb {
+      background: var(--button-bg);
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
+  <!-- Loading notification -->
+  <div class="loading" id="loading">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <h3>Saving Your Quest</h3>
+      <p>Recording your details in the sacred scrolls...</p>
+    </div>
+  </div>
+
   <div class="container">
     <!-- Decorative corners -->
     <div class="corner-decoration corner-tl"></div>
@@ -280,64 +360,90 @@ input:-moz-placeholder { /* Firefox 18- */
     <div class="home">
       <div><h1>AETHER</h1></div>
       <p>Redefining How NFTs are Launched</p>
-      <button class="start">join the movement</button>
+      <button class="start" id="getStarted">Begin Your Quest</button>
+      <button class="button-secondary" id="aboutBtn">Learn More</button>
     </div>
 
-    <!-- Step 2: Username -->
+    <!-- Step 2: About Section -->
+    <div class="about hidden fade">
+      <h3>About AETHER</h3>
+      <div class="divider"></div>
+      <div class="about-content">
+        <p>Welcome to <strong>AETHER</strong>, where we're revolutionizing the NFT launch experience with a medieval twist.</p>
+        
+        <p>Our platform combines the timeless appeal of medieval aesthetics with cutting-edge blockchain technology to create unforgettable NFT experiences.</p>
+        
+        <h4>Our Mission</h4>
+        <p>To bridge the gap between traditional artistry and digital innovation, creating a unique space where creators and collectors can connect in meaningful ways.</p>
+        
+        <h4>How It Works</h4>
+        <p>Complete simple quests to participate in our exclusive NFT launches. Each quest brings you closer to securing your place in our limited collections.</p>
+        
+        <h4>Why Solana?</h4>
+        <p>We've chosen Solana for its lightning-fast transactions and minimal fees, ensuring a seamless experience for our community.</p>
+        
+        <p>Join us on this epic journey as we redefine what's possible in the NFT space.</p>
+      </div>
+      <div class="divider"></div>
+      <button id="backFromAbout" class="button-secondary">Return to Main Hall</button>
+    </div>
+
+    <!-- Step 3: Username -->
     <div class="username hidden fade">
-      <h3>enter your X username</h3>
+      <h3>Enter Your X Username</h3>
       <div class="divider"></div>
       <input type="text" id="x_username" placeholder="@username">
-      <button id="save_username">next</button>
+      <button id="save_username">Continue Quest</button>
     </div>
 
-    <!-- Step 3: Tasks -->
+    <!-- Step 4: Tasks -->
     <div class="tasks hidden fade">
-      <h3>complete these tasks</h3>
+      <h3>Complete These Quests</h3>
       <div class="divider"></div>
 
-      <p>follow
+      <p>Follow AETHER and turn on notis
         <a href="https://x.com/aethersxyz" target="_blank" rel="noopener noreferrer">
-          <button>go</button>
+          <button>Begin</button>
         </a>
       </p>
 
-      <p> like & repost post
+      <p>Like & Repost Our Announcement
         <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
-          <button>go</button>
+          <button>Begin</button>
         </a>
       </p>
-      <input type="url" id="repost_link" placeholder="paste your repost link">
+      <input type="url" id="repost_link" placeholder="Paste your repost link">
 
-      <p>tag 2 friends
+      <p>Tag 2 Fellow Adventurers
         <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
-          <button>go</button>
+          <button>Begin</button>
         </a>
       </p>
 
-      <p>comment on post
+      <p>Share Your Wisdom on Our Post
         <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
-          <button>go</button>
+          <button>Begin</button>
         </a>
       </p>
-      <input type="url" id="comment_link" placeholder="paste your comment link">
+      <input type="url" id="comment_link" placeholder="Paste your comment link">
 
-      <button id="done_tasks">done</button>
+      <button id="done_tasks">Complete Quests</button>
     </div>
 
-    <!-- Step 4: Address -->
+    <!-- Step 5: Address -->
     <div class="address hidden fade">
-      <h3>enter your wallet</h3>
+      <h3>Enter Your Solana Wallet</h3>
       <div class="divider"></div>
-      <input type="text" id="address" placeholder="0x...">
-      <button id="save_address">submit</button>
+      <input type="text" id="address" placeholder="Your Solana address (e.g., 7x... or Solana domain)">
+      <button id="save_address">Submit Your Quest</button>
     </div>
 
-    <!-- Step 5: Final -->
+    <!-- Step 6: Final -->
     <div class="final hidden fade">
-      <h3>✅ entry recorded</h3>
+      <h3>✅ Quest Successfully Recorded</h3>
       <div class="divider"></div>
-      <p>Your quest has been recorded in the sacred scrolls.</p>
+      <p>Your journey has been inscribed in the sacred scrolls of AETHER.</p>
+      <p>We shall notify you when the next phase of our adventure begins!</p>
     </div>
 
   </div>
@@ -360,61 +466,104 @@ input:-moz-placeholder { /* Firefox 18- */
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    const imageView = document.querySelector('.home');
+    // UI Elements
+    const homeDiv = document.querySelector('.home');
+    const aboutDiv = document.querySelector('.about');
     const usernameDiv = document.querySelector('.username');
     const tasksDiv = document.querySelector('.tasks');
     const addressDiv = document.querySelector('.address');
     const finalDiv = document.querySelector('.final');
-    const joinMovement = document.querySelector('.start')
+    const loadingDiv = document.getElementById('loading');
+    
+    // Buttons
+    const getStartedBtn = document.getElementById('getStarted');
+    const aboutBtn = document.getElementById('aboutBtn');
+    const backFromAboutBtn = document.getElementById('backFromAbout');
+    
+    // Data storage
     let username = "";
     let repostLink = "";
     let commentLink = "";
 
-    // Step 1 → Step 2
-    joinMovement.addEventListener('click', () => {
-      imageView.classList.add('hidden');
+    // Home → About
+    aboutBtn.addEventListener('click', () => {
+      homeDiv.classList.add('hidden');
+      aboutDiv.classList.remove('hidden');
+    });
+
+    // About → Home
+    backFromAboutBtn.addEventListener('click', () => {
+      aboutDiv.classList.add('hidden');
+      homeDiv.classList.remove('hidden');
+    });
+
+    // Home → Username
+    getStartedBtn.addEventListener('click', () => {
+      homeDiv.classList.add('hidden');
       usernameDiv.classList.remove('hidden');
     });
 
-    // Step 2 → Step 3
+    // Username → Tasks
     document.getElementById('save_username').addEventListener('click', () => {
       username = document.getElementById('x_username').value.trim();
       if (username) {
         usernameDiv.classList.add('hidden');
         tasksDiv.classList.remove('hidden');
+      } else {
+        alert("Please enter your X username to continue your quest.");
       }
     });
 
-    // Step 3 → Step 4
+    // Tasks → Address
     document.getElementById('done_tasks').addEventListener('click', () => {
       repostLink = document.getElementById('repost_link').value.trim();
       commentLink = document.getElementById('comment_link').value.trim();
       if (!repostLink || !commentLink) {
-        alert("Please paste both your repost and comment links before continuing.");
+        alert("Please complete all quests and paste both your repost and comment links before continuing.");
         return;
       }
       tasksDiv.classList.add('hidden');
       addressDiv.classList.remove('hidden');
     });
 
-    // Step 4 → Step 5
+    // Address → Final (with Solana validation)
     document.getElementById('save_address').addEventListener('click', async () => {
       const address = document.getElementById('address').value.trim();
-      const evmRegex = /^0x[a-fA-F0-9]{40}$/;
-
-      if (!evmRegex.test(address)) {
-        alert("Please enter a valid EVM address (starts with 0x + 40 hex characters).");
+      
+      // Basic Solana address validation (32-44 base58 characters)
+      const solanaRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+      
+      if (!solanaRegex.test(address)) {
+        alert("Please enter a valid Solana address (32-44 character base58 string).");
         return;
       }
 
       if (address && username && repostLink && commentLink) {
         try {
+          // Show loading notification
+          loadingDiv.style.display = 'flex';
+          
+          // Simulate a short delay to show the loading state
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
           const entryRef = push(ref(db, "entries"));
-          await set(entryRef, { username, repostLink, commentLink, address });
+          await set(entryRef, { 
+            username, 
+            repostLink, 
+            commentLink, 
+            address,
+            timestamp: new Date().toISOString()
+          });
+          
+          // Hide loading notification
+          loadingDiv.style.display = 'none';
+          
           addressDiv.classList.add('hidden');
           finalDiv.classList.remove('hidden');
         } catch (e) {
-          alert("Error saving: " + e);
+          // Hide loading notification on error
+          loadingDiv.style.display = 'none';
+          alert("Error saving your quest: " + e.message);
         }
       }
     });
