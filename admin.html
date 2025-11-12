@@ -386,6 +386,35 @@
     let allEntries = [];
     let filteredEntries = [];
 
+    // Function to fix Twitter/X URLs
+    function fixTwitterUrl(url) {
+      if (!url) return null;
+      
+      // If it's already a proper Twitter/X URL, return as is
+      if (url.includes('twitter.com') || url.includes('x.com')) {
+        // Ensure it has proper protocol
+        if (!url.startsWith('http')) {
+          return 'https://' + url;
+        }
+        return url;
+      }
+      
+      // If it's a relative URL (starts with /), prepend the domain
+      if (url.startsWith('/')) {
+        // Extract the path and create proper Twitter URL
+        const path = url.substring(1);
+        return `https://x.com/${path}`;
+      }
+      
+      // If it's just a username (without @), create profile URL
+      if (!url.includes('/') && !url.includes('.')) {
+        return `https://x.com/${url.replace('@', '')}`;
+      }
+      
+      // For any other case, try to construct a proper URL
+      return url;
+    }
+
     // Load data from Firebase
     function loadData() {
       entriesBody.innerHTML = `
@@ -404,10 +433,20 @@
         if (data) {
           // Convert object to array
           Object.keys(data).forEach(key => {
-            allEntries.push({
+            const entry = {
               id: key,
               ...data[key]
-            });
+            };
+            
+            // Fix the Twitter/X URLs
+            if (entry.repostLink) {
+              entry.repostLink = fixTwitterUrl(entry.repostLink);
+            }
+            if (entry.commentLink) {
+              entry.commentLink = fixTwitterUrl(entry.commentLink);
+            }
+            
+            allEntries.push(entry);
           });
           
           // Sort by timestamp (newest first)
@@ -493,12 +532,12 @@
           <td class="address-cell" title="${entry.address || ''}">${entry.address || 'N/A'}</td>
           <td class="link-cell">
             ${entry.repostLink ? 
-              `<a href="${entry.repostLink}" target="_blank" rel="noopener">View Repost</a>` : 
+              `<a href="${entry.repostLink}" target="_blank" rel="noopener noreferrer">View Repost</a>` : 
               'N/A'}
           </td>
           <td class="link-cell">
             ${entry.commentLink ? 
-              `<a href="${entry.commentLink}" target="_blank" rel="noopener">View Comment</a>` : 
+              `<a href="${entry.commentLink}" target="_blank" rel="noopener noreferrer">View Comment</a>` : 
               'N/A'}
           </td>
         </tr>
